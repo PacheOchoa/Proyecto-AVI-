@@ -1,6 +1,21 @@
 
 <?php  require_once "../../../../clases/conexion.php";   
+
+session_start();
+
+$stm2 = $conexion->prepare("select id from usuarios where usuario=:idUsuario");
+
+$stm2->bindValue(":idUsuario",$_SESSION['usuario']);
+
+$stm2->execute();
+
+$res = $stm2->fetch();
+
+
+
         $stm = $conexion->prepare("SELECT clientes.id,clientes.Nombre,ApellidoPaterno,ApellidoMaterno,telefono,correo,medios.Nombre FROM clientes INNER JOIN medios ON clientes.id_medio = medios.id GROUP BY clientes.id");
+
+        $stm->bindValue(":idU",$res[0]);
         $stm->execute();
 
 
@@ -15,14 +30,14 @@
          
          <th style="width:10px;text-align:center">#</th>
          <th style="text-align:center;">Nombre</th>
-         <th style="text-align:center;">Apellido Paterno</th>
-         <th style="text-align:center;">Apellido Materno</th>
-         <th style="text-align:center;">Telefono</th>
+         <th style="text-align:center;">Apellido paterno</th>
+         <th style="text-align:center;">Apellido materno</th>
+         <th style="text-align:center;">Télefono</th>
          <th style="text-align:center;">Correo</th>
          <th style="text-align:center;">Nombre del medio</th>
          <th style="text-align:center;">Editar</th>
-         <th style="text-align:center;">Eliminar</th>
-         <th style="text-align:center;">Ir a la afluencia</th>
+         <!--<th style="text-align:center;">Eliminar</th> -->
+         <th style="text-align:center;">Agregar la afluencia</th>
 
        </tr> 
 
@@ -48,15 +63,15 @@
               </span>
                </td>
 
-               <td style="text-align:center;">
-              <span class="btn btn-danger btn-sm" onclick="Eliminar('<?php echo $ver[0];?>')">
-                 <span class="fa fa-eraser"></span> 
-              </span>
+               <!--<td style="text-align:center;"> -->
+              <!--<span class="btn btn-danger btn-sm" onclick="Eliminar('<?php echo $ver[0];?>')"> -->
+                <!-- <span class="fa fa-eraser"></span>  -->
+             <!-- </span> -->
                </td>
 
                <td style="text-align:center;">
               <span  class="btn btn-info btn-sm" data-toggle="modal" data-target="#modalAgregarAfluencia" onclick="AgregarDatosAfluencia('<?php echo $ver[0];?>')">
-                 <span>Ir a la afluencia</span> 
+                 <span>Agregar la afluencia</span> 
               </span>
                </td>
             </tr>

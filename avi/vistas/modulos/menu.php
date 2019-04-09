@@ -50,7 +50,7 @@
 					<a href="afluencia">
 
 						<i class="fa fa-users"></i>
-						<span>afluencia</span>
+						<span>Afluencia</span>
 
 					</a>
 

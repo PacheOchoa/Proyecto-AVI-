@@ -2,9 +2,16 @@
 <!DOCTYPE html>
 <html>
   <head>
+  <link rel="icon" href="../avi/vistas/img/plantilla/icono.ico" type="image/x-icon" />
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>AVI | Log in</title>
+
+  
+    
+
+
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.5 -->
@@ -20,14 +27,14 @@
   </head>
   
   
-  <body class="hold-transition login-page" style="background-color:white;">
+  <body  style="background:url(home1.png);background-repeat:no-repeat center center; min-height:100%;background-size:cover;">
     <div class="login-box">
       <div class="login-logo">
         <!-- -->
         
       </div><!-- /.login-logo -->
-      <div class="login-box-body">
-      <img src="../../avi_oficial/vistas/img/plantilla/logo_guia.jpg" width="330" height="160"> <br>
+      <div class="login-box-body" style="border-radius:10px;">
+      <img src="../avi/vistas/img/plantilla/logo-original.png" width="330" height="160"> <br>
         <!--<p class="login-box-msg">Iniciar Sesión</p> -->
         
 
@@ -42,7 +49,7 @@
             <span class="glyphicon glyphicon-lock form-control-feedback"></span>
 
             <span>
-              <button class="btn btn-primary" id="btnIngreso">Iniciar Sesión</button>
+              <button class="btn btn-primary" id="btnIngreso">Iniciar sesión</button>
               
               </span>
 

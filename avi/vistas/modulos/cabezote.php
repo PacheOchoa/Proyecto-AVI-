@@ -8,7 +8,7 @@
 		<!-- logo mini -->
 		<span class="logo-mini">
 			
-			<img src="vistas/img/plantilla/logo_guia.jpg" class="img-responsive" style="padding:10px">
+			<img src="vistas/img/plantilla/logo-original.png" class="img-responsive" style="padding:10px">
 
 		</span>
 
@@ -16,7 +16,7 @@
 
 		<span class="logo-lg">
 			
-			<img src="vistas/img/plantilla/logo_guia.jpg" class="img-responsive" style="padding:10px 0px">
+			<img src="vistas/img/plantilla/logo-original.png" class="img-responsive" style="padding:10px 0px">
 
 		</span>
 
@@ -47,8 +47,9 @@
 
 					<?php
 					if($_SESSION["usuario"] != ""){
-
-						echo '<img src="'.$_SESSION["usuario"].'" class="user-image">';
+                        
+						echo '<img src="vistas/img/usuarios/default/anonymous.png" class="user-image">';
+						
 
 					}else{
 
@@ -72,7 +73,7 @@
 							
 							<div class="pull-right">
 								
-								<a href="salir" class="btn btn-default btn-flat">Salir</a>
+								<a href="salir" class="btn btn-danger btn-flat"><b>Salir</b></a>
 
 							</div>
 

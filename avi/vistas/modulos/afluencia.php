@@ -36,7 +36,7 @@ $stm->execute();
   
   <h1>
     
-    Administrar Afluencia
+    Administrar afluencia
   
   </h1>
 
@@ -44,7 +44,7 @@ $stm->execute();
     
     <li><a href="inicio"><i class="fa fa-dashboard"></i> Inicio</a></li>
     
-    <li class="active">Administrar Afluencia</li>
+    <li class="active">Administrar afluencia</li>
   
   </ol>
 
@@ -97,7 +97,7 @@ MODAL EDITAR CLIENTE
 
         <button type="button" class="close" data-dismiss="modal">&times;</button>
 
-        <h4 class="modal-title">Editar Afluencia</h4>
+        <h4 class="modal-title">Editar afluencia</h4>
 
 
       </div>
@@ -153,7 +153,7 @@ MODAL EDITAR CLIENTE
 
       <option value="lead">Lead</option> 
       
-      <option value="llamada">llamada</option> 
+      <option value="llamada">Llamada</option> 
       
       <option value="whatsapp">WhatsApp</option>
       <option value="visita">Visita</option>
@@ -163,7 +163,7 @@ MODAL EDITAR CLIENTE
 
 
 <label for="">Comentarios</label>
-<input type="text" id="comentarios" name="comentarios" class="form-control input-sm">
+<textarea id="comentarios" class="md-textarea form-control" name="comentarios" rows="3"></textarea>
             
         
      
@@ -256,6 +256,7 @@ MODAL EDITAR CLIENTE
              
                alert("Afluencia actualizada");
                $('#tabla').load('vistas/modulos/procesos/afluencia/tabla.php');
+               window.location = "afluencia";
 
              }else{
               //alert("NO SE PUDO ACTUALIZAR EL CLIENTE :(");
@@ -275,7 +276,7 @@ MODAL EDITAR CLIENTE
 
 <script> 
      function AgregarDatos(idcliente){
-       alert(idcliente);
+      
         
 
         $.ajax({

@@ -1,7 +1,20 @@
-<?php  require_once "../../../../clases/conexion.php";   
-        $stm = $conexion->prepare("SELECT afluencia.id,afluencia.fecha,afluencia.hora,afluencia.evento, afluencia.comentarios,desarrollo.nombre AS 'Nombre del desarrollo',asesores.Nombre as 'nombre del asesor',clientes.nombre AS 'Nombre del cliente' FROM afluencia INNER JOIN asesores ON afluencia.id_asesor=asesores.id INNER JOIN desarrollo on afluencia.id_desarrollo = desarrollo.id INNER JOIN clientes ON afluencia.id_cliente = clientes.id");
-        $stm->execute(); 
+<?php  require_once "../../../../clases/conexion.php";  
+      
+                session_start();
 
+        $stm2 = $conexion->prepare("select id from usuarios where usuario=:idUsuario");
+
+        $stm2->bindValue(":idUsuario",$_SESSION['usuario']);
+
+        $stm2->execute();
+
+        $res = $stm2->fetch();
+
+
+        $stm = $conexion->prepare("SELECT afluencia.id,afluencia.fecha,afluencia.hora,afluencia.evento, afluencia.comentarios,desarrollo.nombre AS 'Nombre del desarrollo',asesores.Nombre as 'nombre del asesor',clientes.nombre,clientes.correo,clientes.telefono AS 'Nombre del cliente' FROM afluencia INNER JOIN asesores ON afluencia.id_asesor=asesores.id INNER JOIN desarrollo on afluencia.id_desarrollo = desarrollo.id INNER JOIN clientes ON afluencia.id_cliente = clientes.id INNER JOIN usuarios ON afluencia.id_usuario = usuarios.id WHERE afluencia.id_usuario=1 ORDER BY fecha DESC");
+
+          $stm->bindValue(":idU",$res[0]);
+        $stm->execute();
 
 ?>
 
@@ -29,8 +42,10 @@
           <th style="text-align:center">Nombre del desarrollo</th>
           <th style="text-align:center">Nombre del asesor</th>
           <th style="text-align:center">Nombre del Cliente</th>
+          <th style="text-align:center">Correo del cliente</th>
+          <th style="text-align:center">Télefono del cliente</th>
           <th style="text-align:center;">Editar</th>
-          <th style="text-align:center;">Eliminar</th>
+          <!--<th style="text-align:center;">Eliminar</th> -->
  
         </tr> 
  
@@ -48,6 +63,8 @@
               <td style="text-align:center;"><?php echo  $ver[5]; ?></td>
               <td style="text-align:center;"><?php echo  $ver[6]; ?></td>
               <td style="text-align:center;"><?php echo  $ver[7]; ?></td>
+              <td style="text-align:center;"><?php echo  $ver[8]; ?></td>
+              <td style="text-align:center;"><?php echo  $ver[9]; ?></td>
               
             
              
@@ -66,10 +83,10 @@
               </span> 
                </td>
 
-               <td style="text-align:center;">
+               <!--<td style="text-align:center;">
               <span class="btn btn-danger btn-sm" onclick="Eliminar('<?php echo $ver[0];?>')">
                  <span class="fa fa-eraser"></span> 
-              </span>
+              </span> -->
                </td>
             </tr>
 <?php endwhile; ?>

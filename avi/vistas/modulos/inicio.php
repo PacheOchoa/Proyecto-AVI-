@@ -1,7 +1,28 @@
 <?php
   
     require_once "./clases/conexion.php";
+
+$stm2 = $conexion->prepare("select id from usuarios where usuario=:idUsuario");
+
+$stm2->bindValue(":idUsuario",$_SESSION['usuario']);
+
+$stm2->execute();
+
+$res = $stm2->fetch();
+
+
+
+$stm3 = $conexion->prepare("select id from usuarios where usuario=:idUsuario");
+
+$stm3->bindValue(":idUsuario",$_SESSION['usuario']);
+
+$stm3->execute();
+
+$rs =  $stm3->fetch();
+
+
    $stm = $conexion->prepare("SELECT COUNT(*) AS total FROM clientes");
+   $stm->bindValue(":idU",$res[0]);
    $stm->execute();
 
    $res = $stm->fetch(PDO::FETCH_ASSOC);
@@ -9,24 +30,23 @@
 
    //afluencias
 
-   $stmA = $conexion->prepare("SELECT COUNT(*) AS total FROM afluencia");
+    $stmA = $conexion->prepare("SELECT COUNT(*) AS total FROM afluencia where afluencia.id_usuario=:idUA");
+   $stmA->bindValue(":idUA",$rs[0]);
    $stmA->execute();
 
    $aflu = $stmA->fetch(PDO::FETCH_ASSOC);
 
+  
 
-   //asesores 
-   $stmAse = $conexion->prepare("SELECT COUNT(*) AS total FROM asesores");
-   $stmAse->execute();
+  
 
-   $ase = $stmAse->fetch(PDO::FETCH_ASSOC);
 
-   //asesores 
-   $stmemp = $conexion->prepare("SELECT COUNT(*) AS total FROM empresa");
-   $stmemp->execute();
 
-   $empresa = $stmemp->fetch(PDO::FETCH_ASSOC);
+?>
 
+<?php
+
+ 
 
 
 ?>
@@ -55,14 +75,14 @@ PÁGINA DE INICIO
   <section class="content-header">
     
     <h1>
-    Tablero Del AVI
-    <small>Panel de Control</small>
+    Tablero del avi
+    <small>Panel de control</small>
     </h1>
 
     <ol class="breadcrumb">
 
       <li><a href="inicio"><i class="fa fa-dashboard"></i> Inicio</a></li>
-      <li class="active">Tablero</li>
+      
 
     </ol>
 
@@ -83,7 +103,7 @@ PÁGINA DE INICIO
                 <div class="icon">
                   <i class="fa fa-user-circle" aria-hidden="true" style="color:black;"></i>
                 </div>
-                <a href="clientes" class="small-box-footer">ver más <i class="fa fa-arrow-circle-right"></i></a>
+                <a href="clientes" class="small-box-footer">Ver más <i class="fa fa-arrow-circle-right"></i></a>
               </div>
              </div>
 
@@ -92,7 +112,7 @@ PÁGINA DE INICIO
               <div class="small-box bg-green">
                 <div class="inner">
                   <h3><?php echo $aflu['total']; ?></h3>
-                  <p>afluencias</p>
+                  <p>Afluencias</p>
                 </div>
                 <div class="icon">
                   <i class="fa fa-users" aria-hidden="true" style="color:black;"></i>
